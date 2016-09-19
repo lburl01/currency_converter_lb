@@ -1,3 +1,5 @@
+lori = Currency.new(10.00, "USD")
+peter = Currency.new(1.00, "pesos")
 class Currency
 attr_reader :amount, :currency_code
 # should things be passed in here or no? Not sure about when to do that or not.
@@ -11,7 +13,7 @@ attr_reader :amount, :currency_code
       added_amounts = account_one.amount + account_two.amount
       return added_amounts
     else
-      return false
+      raise DifferentCurrencyCodeError, "You can't do that. Those look like two different currency types."
     end
   end
 
@@ -20,8 +22,11 @@ attr_reader :amount, :currency_code
       subtracted_amounts = account_one.amount - account_two.amount
       return subtracted_amounts
     else
-      return false
+      raise DifferentCurrencyCodeError, "You can't do that. Those look like two different currency types."
     end
   end
 
+end
+
+class DifferentCurrencyCodeError < StandardError
 end
