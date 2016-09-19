@@ -15,4 +15,13 @@ attr_reader :amount, :currency_code
     end
   end
 
+  def subtract_amounts(account_one, account_two)
+    if account_one.currency_code == account_two.currency_code
+      subtracted_amounts = account_one.amount - account_two.amount
+      return subtracted_amounts
+    else
+      return false
+    end
+  end
+
 end
