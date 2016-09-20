@@ -40,13 +40,13 @@ class Currency
 
   def get_currency_code(input)
     if input[0] == '$'
-      @code = 'USD'
+      @currency_code = 'USD'
       @amount = value[1..-1].to_f
     elsif input[0] == '€'
-      @code = 'EUR'
+      @currency_code = 'EUR'
       @amount = value[1..-1].to_f
     elsif input[0] == '¥'
-      @code = 'JPY'
+      @currency_code = 'JPY'
       @amount = value[1..-1].to_f
     else
       puts "Wrong currency type. Try using $, € (option + shift + 2), or ¥ (option + Y)"
