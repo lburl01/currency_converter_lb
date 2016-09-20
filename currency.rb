@@ -1,6 +1,6 @@
 
 class Currency
-attr_reader :amount, :currency_code
+  attr_reader :amount, :currency_code
 # should things be passed in here or no? Not sure about when to do that or not.
   def initialize(amount, currency_code)
     @amount = amount.to_f
@@ -34,11 +34,22 @@ attr_reader :amount, :currency_code
   end
 
   def *(multiplier)
-    if multiplier.is_a? Integer
       multiplied_amount = @amount * multiplier
       return Currency.new(multiplied_amount, @currency_code)
+  end
+
+  def get_currency_code(input)
+    if input[0] == '$'
+      @code = 'USD'
+      @amount = value[1..-1].to_f
+    elsif input[0] == '€'
+      @code = 'EUR'
+      @amount = value[1..-1].to_f
+    elsif input[0] == '¥'
+      @code = 'JPY'
+      @amount = value[1..-1].to_f
     else
-      return false
+      puts "Wrong currency type. Try using $, € (option + shift + 2), or ¥ (option + Y)"
     end
   end
 
@@ -50,6 +61,3 @@ end
 lori = Currency.new(10.00, "€")
 peter = Currency.new(2.00, "¥")
 megan = Currency.new(5.00, "€")
-
-# euro symbol = option + shift + 2
-# yen = alt + y
